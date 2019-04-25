@@ -1,40 +1,39 @@
-version: "2"
+version: '2'
 services:
+    mysql.wuxt:
+        container_name: mysql.wuxt
+        image: mysql:5.7
+        volumes:
+            - ./_db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: dev
 
-  mysql.wuxt:
-    container_name: mysql.wuxt
-    image: mysql:5.7
-    volumes:
-      - ./_db:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: dev
+    wp.wuxt:
+        container_name: wp.wuxt
+        image: wordpress:5.1.1-php7.2-apache
+        volumes:
+            - ./wp-content:/usr/src/wordpress/wp-content
+        expose:
+            - '3080'
+        ports:
+            - '3080:80'
+        environment:
+            WORDPRESS_DB_HOST: mysql.wuxt:3306
+            WORDPRESS_DB_NAME: wuxt
+            WORDPRESS_DB_USER: root
+            WORDPRESS_DB_PASSWORD: dev
 
-  wp.wuxt:
-    container_name: wp.wuxt
-    image: wordpress:5.1.1-php7.2-apache
-    volumes:
-      - ./wp-content:/usr/src/wordpress/wp-content
-    expose:
-      - '3080'
-    ports:
-      - '3080:80'
-    environment:
-      WORDPRESS_DB_HOST: mysql.wuxt:3306
-      WORDPRESS_DB_NAME: wuxt
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: dev
-
-  front.wuxt:
-    container_name: front.wuxt
-    image: node:11-slim
-    working_dir: "/var/www/app"
-    environment:
-      - HOST=0.0.0.0
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./nuxt:/var/www/app
-    command: bash -c "yarn install && yarn build && yarn dev"
+    front.wuxt:
+        container_name: front.wuxt
+        image: node:11-slim
+        working_dir: '/var/www/app'
+        environment:
+            - HOST=0.0.0.0
+        ports:
+            - '3000:3000'
+        volumes:
+            - ./nuxt:/var/www/app
+        command: bash -c "yarn install && yarn dev"
 
 networks:
-  default:
+    default:
