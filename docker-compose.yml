@@ -13,7 +13,7 @@ services:
     container_name: wp.wuxt
     image: wordpress:5.1.1-php7.2-apache
     volumes:
-      - ./wp-content:/usr/src/wordpress/wp-content
+      - ./wp-content:/var/www/html/wp-content
     expose:
       - '3080'
     ports:
