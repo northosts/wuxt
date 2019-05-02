@@ -12,16 +12,17 @@ services:
         container_name: wp.wuxt
         image: wordpress:5.1.1-php7.2-apache
         volumes:
-            - ./wp-content:/usr/src/wordpress/wp-content
+          - ./wp-content:/var/www/html/wp-content
         expose:
-            - '3080'
+          - '3080'
         ports:
-            - '3080:80'
+          - '3080:80'
         environment:
-            WORDPRESS_DB_HOST: mysql.wuxt:3306
-            WORDPRESS_DB_NAME: wuxt
-            WORDPRESS_DB_USER: root
-            WORDPRESS_DB_PASSWORD: dev
+          WORDPRESS_DB_HOST: mysql.wuxt:3306
+          WORDPRESS_DB_NAME: wuxt
+          WORDPRESS_DB_USER: root
+          WORDPRESS_DB_PASSWORD: dev
+
 
     front.wuxt:
         container_name: front.wuxt

@@ -1,1 +1,1 @@
-WUXT WordPress theme
+WUXT THEME INDEX SITE
