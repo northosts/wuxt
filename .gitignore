@@ -1,3 +1,4 @@
 node_modules/*
 _db
 wp-content/themes/twenty*
+wp-content/uploads/*
