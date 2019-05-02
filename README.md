@@ -71,7 +71,7 @@ a JSON-object you are good to go.
 
 ### Setup ***nuxt.js***
 
-Nuxt should have been startet automatically inside the docker container. The
+Nuxt should have been started automatically inside the docker container. The
 command we use for running the ***nuxt.js*** server is `yarn dev`. Check
 if the front-end is running by opening `http://localhost:3000`. You should
 be greeted by the **Wuxt** intro-screen.
