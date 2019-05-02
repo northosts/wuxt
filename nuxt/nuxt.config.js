@@ -41,7 +41,7 @@ module.exports = {
     [
       '~/modules/wp-api/index',
       {
-        endpoint: 'wp.wuxt'
+        endpoint: 'http://wp.wuxt:80/wp-json'
       }
     ]
   ],

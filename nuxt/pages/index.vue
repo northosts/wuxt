@@ -14,7 +14,9 @@ export default {
     try {
       const posts = await $wp.posts()
       //   const posts = await $axios.get('http://wp.wuxt/wp-json/wp/v2/posts')
-      console.log(posts)
+      return {
+        posts
+      }
     } catch (e) {
       /* eslint-disable no-console */
       console.log(e)
