@@ -92,9 +92,17 @@ To make **wuxt** even more easy to use, there are a bunch of endpoint extensions
 
 #### Front-page
 
-`GET` `/wp-json/wuxt/v1/front-page`
+```
+$wp.frontPage()
+$wp.frontPage().embed()
+```
 
-`GET` `/wp-json/wuxt/v1/front-page?_embed`
+or
+
+```
+GET: /wp-json/wuxt/v1/front-page
+GET: /wp-json/wuxt/v1/front-page?_embed
+```
 
 You can use the **_WordPress_** front-page settings to build your front-ends
 first page. If you setup the front-page in **_WordPress_** as static page, the
@@ -110,9 +118,17 @@ access to featured media (post-thumbnails), author information and more.
 
 #### Menus
 
-`GET` `/wp-json/wuxt/v1/menu`
+```
+$wp.menu()
+$wp.menu().location(<location>)
+```
 
-`GET` `/wp-json/wuxt/v1/menu?location=main`
+or
+
+```
+GET: /wp-json/wuxt/v1/menu
+GET: /wp-json/wuxt/v1/menu?location=<location>
+```
 
 The **_WordPress_** Rest API is not providing an endpoint for menus by default,
 so we added one. We have also registered a standard menu with the location `main`,
@@ -127,9 +143,17 @@ location to the endpoint.
 
 #### Slugs
 
-`GET` `/wp-json/wuxt/v1/slug/<post-or-page-slug>`
+```
+$wp.slug()
+$wp.slug().embed()
+```
 
-`GET` `/wp-json/wuxt/v1/slug/<post-or-page-slug>?_embed`
+or
+
+```
+GET: /wp-json/wuxt/v1/slug/<post-or-page-slug>
+GET: /wp-json/wuxt/v1/slug/<post-or-page-slug>?_embed
+```
 
 The **_WordPress_** Rest API is not providing an endpoint to get posts or pages
 by slug. That doesn't mirror the **_WordPress_** theme default behaviour,
