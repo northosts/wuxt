@@ -7,15 +7,14 @@ export default {
   async asyncData(context) {
     const {
       app: { $wp },
-      //   $axios,
       error
     } = context
 
     try {
-      const posts = await $wp.posts()
-      //   const posts = await $axios.get('http://wp.wuxt/wp-json/wp/v2/posts')
+      const page = await $wp.frontPage().embed()
+
       return {
-        posts
+        page
       }
     } catch (e) {
       /* eslint-disable no-console */
