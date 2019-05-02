@@ -84,7 +84,7 @@ front-page. The change should directly be visible on the front-page as well.
 The ***WordPress*** Rest API gives you access to a wide range of native
 endpoints. Find the docs at:  [https://developer.wordpress.org/rest-api/reference/](https://developer.wordpress.org/rest-api/reference/). To easily access the
 endpoints from ***nuxt.js*** you can use the `$wp` extension, which integrates
-the [node-wp](https://www.npmjs.com/package/node-wp) library.
+the [node-wpapi](https://www.npmjs.com/package/node-wp) library. You can find the full documentation [here](https://github.com/WP-API/node-wpapi).
 
 ### Extensions to the API endpoints
 
