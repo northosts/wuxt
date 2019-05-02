@@ -144,8 +144,8 @@ location to the endpoint.
 #### Slugs
 
 ```
-$wp.slug()
-$wp.slug().embed()
+$wp.slug().name('<post-or-page-slug>')
+$wp.slug().name('<post-or-page-slug>').embed()
 ```
 
 or
