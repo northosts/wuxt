@@ -12,9 +12,11 @@ export default {
 
     try {
       const page = await $wp.frontPage().embed()
+      const menu = await $wp.menu().location('main')
 
       return {
-        page
+        page,
+        menu
       }
     } catch (e) {
       /* eslint-disable no-console */
