@@ -10,12 +10,12 @@ add_action('rest_api_init', 'wuxt_front_page_route');
 function wuxt_front_page_route() {
     register_rest_route('wuxt', '/v1/front-page', array(
         'methods'  => 'GET',
-        'callback' => 'wuxt_get_frontpage'
+        'callback' => 'wuxt_get_front_page'
     ));
 }
 
 
-function wuxt_get_frontpage( $object ) {
+function wuxt_get_front_page( $object ) {
 
     $request  = new WP_REST_Request( 'GET', '/wp/v2/posts' );
 
@@ -26,7 +26,7 @@ function wuxt_get_frontpage( $object ) {
 
     $response = rest_do_request( $request );
     if ($response->is_error()) {
-        return '{"error": "WP Request Error"}';
+        return new WP_Error( 'wuxt_request_error', __( 'Request Error' ), array( 'status' => 500 ) );
     }
 
     $embed = $object->get_param( '_embed' ) !== NULL;

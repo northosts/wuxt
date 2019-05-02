@@ -124,3 +124,17 @@ want to use this endpoint.
 
 If you want to use multiple menus, you can request them by providing the menu
 location to the endpoint.
+
+#### Slugs
+
+`GET` `/wp-json/wuxt/v1/slug/<post-or-page-slug>`
+
+`GET` `/wp-json/wuxt/v1/slug/<post-or-page-slug>?_embed`
+
+The ***WordPress*** Rest API is not providing an endpoint to get posts or pages
+by slug. That doesn't mirror the ***WordPress*** theme default behaviour,
+where the url-slug can point to both a page or a post.
+
+With the `slug` endpoint we add that function, which is first looking for a post
+with the given slug and then for a page. The `embed` parameter is working for
+the `slug` endpoint.
