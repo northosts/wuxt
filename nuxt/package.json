@@ -10,7 +10,8 @@
     "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "nodemon": "nodemon --watch server --exec \"nuxt\""
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
@@ -35,7 +36,7 @@
     "eslint-plugin-promise": ">=4.0.1",
     "eslint-plugin-standard": ">=4.0.0",
     "eslint-plugin-vue": "^5.2.2",
-    "nodemon": "^1.18.9",
+    "nodemon": "^1.19.0",
     "prettier": "^1.16.4"
   }
 }
