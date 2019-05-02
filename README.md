@@ -1,6 +1,6 @@
 # Wuxt - nuxt.js and WordPress development environment
 
-***Note: This project is in its early stages, not everything work and
+***Note: This project is in its early stages, not everything works and
 most things will be frequently changed.***
 
 **Wuxt** combines ***WordPress***, the worlds biggest CMS with ***nuxt.js***,
