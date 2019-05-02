@@ -37,7 +37,13 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    [
+      '~/modules/wp-api/index',
+      {
+        endpoint: 'wp.wuxt'
+      }
+    ]
   ],
   /*
    ** Axios module configuration
