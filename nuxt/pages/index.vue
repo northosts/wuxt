@@ -12,10 +12,16 @@ export default {
     } = context
 
     try {
-      const posts = await $wp.posts()
-      //   const posts = await $axios.get('http://wp.wuxt/wp-json/wp/v2/posts')
+      // get blog title and slogan with $wp
+      const settings = await $wp.root('/')
+      // get posts with $wp
+      const posts = await $wp.posts().embed()
+      // get pages with $wp
+      const pages = await $wp.pages().embed()
       return {
-        posts
+        settings,
+        posts,
+        pages
       }
     } catch (e) {
       /* eslint-disable no-console */
