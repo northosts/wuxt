@@ -215,7 +215,7 @@ function wuxt_get_menu($params)
     }
 
     if (!isset($theme_locations[$params['location']])) {
-        return '{"error": "Menu loacation does not exist."}';
+        return new WP_Error( 'wuxt_menu_error', __( 'Menu location does not exist' ), array( 'status' => 404 ) );
     }
 
     $menu_obj = get_term($theme_locations[$params['location']], 'nav_menu');
