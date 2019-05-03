@@ -18,3 +18,4 @@
     require_once(dirname(__FILE__) . '/api-extensions/front-page.php');
     require_once(dirname(__FILE__) . '/api-extensions/menu.php');
     require_once(dirname(__FILE__) . '/api-extensions/slug.php');
+    require_once(dirname(__FILE__) . '/api-extensions/meta.php');
