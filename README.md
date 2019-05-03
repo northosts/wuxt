@@ -162,3 +162,10 @@ where the url-slug can point to both a page or a post.
 With the `slug` endpoint we add that function, which is first looking for a post
 with the given slug and then for a page. The `embed` parameter is working for
 the `slug` endpoint.
+
+#### Meta fields
+
+The **_WordPress_** Rest API does not include meta fields in the post objects by
+default. For two of the most common plugins, ACF and Yoast WordPress SEO, we
+have automatically added the values of these fields. They are located in the
+`meta` section of the response objects.
