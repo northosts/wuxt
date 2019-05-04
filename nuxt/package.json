@@ -24,6 +24,8 @@
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
     "babel-eslint": "^10.0.1",
+    "coffee-loader": "^0.9.0",
+    "coffeescript": "^2.4.1",
     "eslint": "^5.15.1",
     "eslint-config-prettier": "^4.1.0",
     "eslint-config-standard": ">=12.0.0",
@@ -36,7 +38,11 @@
     "eslint-plugin-promise": ">=4.0.1",
     "eslint-plugin-standard": ">=4.0.0",
     "eslint-plugin-vue": "^5.2.2",
+    "node-sass": "^4.12.0",
     "nodemon": "^1.19.0",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "pug": "2.0.3",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^7.1.0"
   }
 }
