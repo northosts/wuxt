@@ -1,4 +1,9 @@
 const pkg = require('./package')
+const dns = require('dns')
+
+dns.lookup('wp.wuxt', function(err, result) {
+  console.log('WP API IP, connect to: http://' + result + ':80/wp-json')
+})
 
 module.exports = {
   mode: 'universal',
@@ -41,7 +46,7 @@ module.exports = {
     [
       '~/modules/wp-api/index',
       {
-        endpoint: 'http://wp.wuxt:80/wp-json'
+        endpoint: 'http://172.18.0.2:80/wp-json'
       }
     ]
   ],

@@ -17,7 +17,7 @@ export default (ctx, inject) => {
    registerMenu(wp)
    registerSlug(wp)
 
-  /** 
+  /**
    * Inject
    */
   inject('wp', wp)
