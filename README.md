@@ -169,3 +169,36 @@ The **_WordPress_** Rest API does not include meta fields in the post objects by
 default. For two of the most common plugins, ACF and Yoast WordPress SEO, we
 have automatically added the values of these fields. They are located in the
 `meta` section of the response objects.
+
+## Task Management
+
+To help you with some of the common tasks in **wuxt**, we integrated a bunch of
+***gulp*** tasks. Just install the needed packages in the root directory and you
+are ready to run.
+
+    npm install
+
+All available tasks are listed below.
+
+### Working with the containers
+
+Working with ***Docker*** is awesome, but has some drawbacks. One of them is
+that you have to make some changes from inside the container. Two of the most common tasks are managing ***WordPress*** and installing new packages
+in the front-end.
+
+Managing ***WordPress*** **wuxt** provides you with the full power of the
+***WP-CLI*** tool. Check out all documentation at [https://developer.wordpress.org/cli/commands/](https://developer.wordpress.org/cli/commands/). To run any ***WP-CLI*** command inside the `wp.wuxt`
+container, just use the following ***gulp***-task:
+
+    gulp wuxt-wp -c "<command>"
+
+Examples: `gulp wuxt-wp -c "plugin list"`, `gulp wuxt-wp -c "plugin install advanced-custom-fields"`, `gulp wuxt-wp -c "user create wuxt me@wuxt.io"`
+
+The same concept we use for ***yarn*** in the front container:
+
+    gulp wuxt-yarn -c "<command>"
+
+Example: `gulp wuxt-yarn -c "add nuxt-webfontloader"`
+
+The commands are checking if the containers are running and installing needed
+dependencies automatically. So if ***WP-CLI*** is not installed in the container it will be installed before running a `wp` command.

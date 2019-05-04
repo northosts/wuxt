@@ -12,16 +12,9 @@ export default {
     } = context
 
     try {
-      // get blog title and slogan with $wp
-      const settings = await $wp.root('/')
-      // get posts with $wp
       const posts = await $wp.posts().embed()
-      // get pages with $wp
-      const pages = await $wp.pages().embed()
       return {
-        settings,
-        posts,
-        pages
+        posts
       }
     } catch (e) {
       /* eslint-disable no-console */
