@@ -25,6 +25,8 @@
   "homepage": "https://github.com/northosts/wuxt#readme",
   "devDependencies": {
     "gulp": "^4.0.1",
+    "mkdirp": "^0.5.1",
+    "prompt": "^1.0.0",
     "require-dir": "^1.2.0"
   }
 }

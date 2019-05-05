@@ -19,3 +19,14 @@
     require_once(dirname(__FILE__) . '/api-extensions/menu.php');
     require_once(dirname(__FILE__) . '/api-extensions/slug.php');
     require_once(dirname(__FILE__) . '/api-extensions/meta.php');
+
+
+    /**
+    *  Include Custom post types
+    */
+    foreach ( scandir( dirname(__FILE__) . '/cpts/' ) as $filename ) {
+        $path = dirname(__FILE__) . '/cpts/' . $filename;
+        if ( is_file( $path ) ) {
+            require_once( $path );
+        }
+    }

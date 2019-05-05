@@ -170,6 +170,22 @@ default. For two of the most common plugins, ACF and Yoast WordPress SEO, we
 have automatically added the values of these fields. They are located in the
 `meta` section of the response objects.
 
+#### Custom post types
+
+The ***WordPress*** Rest API is providing endpoints for custom post types, as
+long as they are registered the right way (see the *Scaffolding* section for generating cpt-definitions).
+
+To make querying of your custom post types as easy as everything else, we added the `cpt` method to the `$wp` object. See post type queries for a
+fictional 'Movies' post type, below
+
+```
+$wp.cpt('movies')
+$wp.cpt('movies').id( 7 )
+```
+
+The `cpt` function returns cpt-objects similar to the `posts()` or `pages()`
+queries, meta fields are included.
+
 ## Task Management
 
 To help you with some of the common tasks in **wuxt**, we integrated a bunch of
@@ -202,3 +218,15 @@ Example: `gulp wuxt-yarn -c "add nuxt-webfontloader"`
 
 The commands are checking if the containers are running and installing needed
 dependencies automatically. So if ***WP-CLI*** is not installed in the container it will be installed before running a `wp` command.
+
+## Scaffolding
+
+There are some tasks you repeat in every ***WordPress*** project. One of them is creating post types. To make that task easy, we added the `wuxt-generate-cpt` task. You just have to input post type slug and name,
+everything else is taken care of:
+
+    gulp wuxt-generate-cpt
+
+The custom post type definition is copied into the `cpts` folder of the wuxt
+theme and loaded automatically by the theme.
+
+To query the new post-type you can use the `cpt` method of the **wuxt** `$wp` object.

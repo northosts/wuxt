@@ -22,8 +22,7 @@ module.exports = {
   checkWPCli: function(container, done) {
 
     var exec = require('child_process').exec;
-    exec('docker exec ' + container + ' bash -c \'wp\'', function(error, stdout, stderr) {
-    }).on('exit', function(code) {
+    exec('docker exec ' + container + ' bash -c \'wp\'', function(error, stdout, stderr) {}).on('exit', function(code) {
       done(127 !== code);
     });
 
@@ -35,8 +34,7 @@ module.exports = {
   installWPCli: function(container, done) {
 
     var exec = require('child_process').exec;
-    exec('docker exec ' + container + ' bash -c \'apt-get update && apt-get install -y less && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp && wp --allow-root cli\'', function(error, stdout, stderr) {
-    }).on('exit', function(code) {
+    exec('docker exec ' + container + ' bash -c \'apt-get update && apt-get install -y less && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp && wp --allow-root cli\'', function(error, stdout, stderr) {}).on('exit', function(code) {
       done(0 === code);
     });
 
@@ -82,6 +80,62 @@ module.exports = {
       done();
     });
 
+  },
+
+  /**
+   * Generate custom post type
+   */
+  generateWPCPT: function(container, done) {
+
+    var prompt = require('prompt');
+    var exec = require('child_process').exec;
+    var fs = require('fs');
+    var mkdirp = require('mkdirp');
+
+    prompt.start();
+
+    prompt.get([{
+      name: 'slug',
+      description: 'Enter your post types slug, e.g. movie',
+      type: 'string',
+      pattern: /^\w+$/,
+      message: 'Slug must be a word'
+    },{
+      name: 'name',
+      description: 'Enter your post types name, e.g. Movie',
+      type: 'string',
+      pattern: /^\w+$/,
+      message: 'Name must be a word'
+    }], function(err, result) {
+
+      exec('docker exec ' + container + ' bash -c \'wp --allow-root scaffold post-type ' + result.slug + ' --label=' + result.name + ' --textdomain=wuxt\'', function(error, stdout, stderr) {
+        if (!error) {
+
+          mkdirp('./wp-content/themes/wuxt/cpts', function (err) {
+            if (err) {
+              console.log('ERROR: Could not create post-type (' + err + ').')
+              return;
+            }
+
+            stdout = stdout.replace('\'title\', \'editor\'', '\'title\', \'editor\', \'custom-fields\'')
+
+            fs.writeFile('./wp-content/themes/wuxt/cpts/' + result.slug + '.php', stdout, function(err) {
+              if (err) {
+                console.log('ERROR: Could not create post-type (' + err + ').')
+                return;
+              }
+
+              console.log('SUCCESS: Post type ' + result.name + ' created.');
+            });
+          });
+        } else {
+          console.log('ERROR: Could not create post-type (' + error + ').')
+        }
+      }).on('exit', function(code) {
+        done();
+      });
+
+    });
   }
 
 };
