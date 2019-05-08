@@ -1,0 +1,32 @@
+{
+  "name": "wuxt",
+  "version": "0.0.1",
+  "description": "WordPress and nuxt.js in an awesome dev environment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/northosts/wuxt.git"
+  },
+  "keywords": [
+    "nuxt.js",
+    "nuxt",
+    "wordpress",
+    "wp",
+    "wp-rest-api"
+  ],
+  "author": "Northosts AB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/northosts/wuxt/issues"
+  },
+  "homepage": "https://github.com/northosts/wuxt#readme",
+  "devDependencies": {
+    "gulp": "^4.0.1",
+    "mkdirp": "^0.5.1",
+    "prompt": "^1.0.0",
+    "require-dir": "^1.2.0"
+  }
+}
