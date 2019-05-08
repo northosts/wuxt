@@ -1,9 +1,4 @@
 const pkg = require('./package')
-const dns = require('dns')
-
-dns.lookup('wp.wuxt', function(err, result) {
-  console.log('WP API IP, connect to: http://' + result + ':80/wp-json')
-})
 
 module.exports = {
   mode: 'universal',
@@ -24,7 +19,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#333' },
 
   /*
    ** Global CSS
@@ -34,7 +29,13 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    ...[
+      process.env.NODE_ENV === 'development'
+        ? { src: '~/plugins/wp-api-docker-connector', ssr: false }
+        : []
+    ]
+  ],
 
   /*
    ** Nuxt.js modules
@@ -46,7 +47,7 @@ module.exports = {
     [
       '~/modules/wp-api/index',
       {
-        endpoint: 'http://172.18.0.2:80/wp-json'
+        endpoint: 'http://wp.wuxt:80/wp-json/'
       }
     ]
   ],
