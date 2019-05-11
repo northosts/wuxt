@@ -250,3 +250,7 @@ The custom post type definition is copied into the `cpts` folder of the wuxt
 theme and loaded automatically by the theme.
 
 To query the new post-type you can use the `cpt` method of the **wuxt** `$wp` object.
+
+## Credits
+
+[@yashha](https://github.com/yashha/wp-nuxt/commits?author=yashha) for the excelent idea with the `$wp` object, first implemented in [https://github.com/yashha/wp-nuxt](https://github.com/yashha/wp-nuxt)

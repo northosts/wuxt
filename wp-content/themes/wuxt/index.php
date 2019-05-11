@@ -16,6 +16,7 @@
             align-items: center;
 
             height: 100vh;
+            margin: 0;
         }
 
         main {
