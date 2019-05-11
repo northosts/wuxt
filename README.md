@@ -1,9 +1,31 @@
+![Wuxt logo](wuxt.png?raw=true "Wuxt")
+
 # Wuxt - nuxt.js and WordPress development environment
 
 **Wuxt** combines **_WordPress_**, the worlds biggest CMS with **_nuxt.js_**,
 the most awesome front-end application framework yet.
 
-The goal is to provide a ready to use development environment, which makes the
+- [Introduction](#intro)  
+- [Getting started](#start)
+  - [Setup WordPress](#setup-wp)
+  - [Setup Nuxt.js](#setup-nuxt)  
+- [WordPress Rest API endpoints](#ep)
+  - [Extensions to the API endpoints](#epp)
+    - [Front-page](#epp-front)
+    - [Menus](#epp-menu)
+    - [Slugs](#epp-slugs)
+    - [Meta queries](#epp-meta)
+    - [Taxonomy queries](#epp-tax)
+    - [Custom post types](#epp-cpt)
+- [Task Management](#tasks)
+  - [Working with the containers](#containers)
+- [Scaffolding](#scaffolding)
+- [Credits](#cred)
+
+<a name="intro"/>
+## Introduction
+
+The goal of Wuxt is to provide a ready to use development environment, which makes the
 full power of **_WordPress_** easily available to your front-and app. Included
 in Wuxt are:
 
@@ -22,6 +44,7 @@ one command, you just need to work with the intuitive WordPress admin interface
 and can skip all back-end coding. But if you know your way around
 **_WordPress_** you are able to easily extend the back-end as well.
 
+<a name="start"/>
 ## Getting started
 
 First clone this repository to a directory you want, then change to that
@@ -51,6 +74,7 @@ Your containers are available at
 -   back-end: `http://localhost:3080`, `http://localhost:3080/wp-admin`
 -   database: `docker exec -ti mysql.wuxt bash`
 
+<a name="setup-wp"/>
 ### Setup **_WordPress_**
 
 Do a common **_WordPress_** installation at
@@ -66,6 +90,7 @@ that the **wuxt** info screen is showing.
 Then check that the Rest API at `http://localhost:3080/wp-json` is returning
 a JSON-object you are good to go.
 
+<a name="setup-nuxt"/>
 ### Setup **_nuxt.js_**
 
 Nuxt should have been started automatically inside the docker container. The
@@ -76,6 +101,7 @@ be greeted by the **Wuxt** intro-screen.
 Check even if **_BrowserSync_** is running, by doing a minor change to the
 front-page. The change should directly be visible on the front-page as well.
 
+<a name="ep"/>
 ## WordPress Rest API endpoints
 
 The **_WordPress_** Rest API gives you access to a wide range of native
@@ -83,10 +109,12 @@ endpoints. Find the docs at: [https://developer.wordpress.org/rest-api/reference
 endpoints from **_nuxt.js_** you can use the `$wp` extension, which integrates
 the [node-wpapi](https://www.npmjs.com/package/node-wp) library. You can find the full documentation [here](https://github.com/WP-API/node-wpapi).
 
+<a name="epp"/>
 ### Extensions to the API endpoints
 
 To make **wuxt** even more easy to use, there are a bunch of endpoint extensions to the **_WordPress_** Rest API.
 
+<a name="epp-front"/>
 #### Front-page
 
 ```
@@ -113,6 +141,7 @@ result of the default posts query
 Note that the `_embed` parameter works for the front-page query, which gives you
 access to featured media (post-thumbnails), author information and more.
 
+<a name="epp-menu"/>
 #### Menus
 
 ```
@@ -138,6 +167,7 @@ want to use this endpoint.
 If you want to use multiple menus, you can request them by providing the menu
 location to the endpoint.
 
+<a name="epp-slugs"/>
 #### Slugs
 
 ```
@@ -160,6 +190,7 @@ With the `slug` endpoint we add that function, which is first looking for a post
 with the given slug and then for a page. The `embed` parameter is working for
 the `slug` endpoint.
 
+<a name="epp-meta"/>
 #### Meta fields
 
 The **_WordPress_** Rest API does not include meta fields in the post objects by
@@ -167,6 +198,7 @@ default. For two of the most common plugins, ACF and Yoast WordPress SEO, we
 have automatically added the values of these fields. They are located in the
 `meta` section of the response objects.
 
+<a name="epp-tax"/>
 #### Taxonomy queries
 
 Taxonomy queries are limited of the simple WordPress Rest API url structure.
@@ -187,6 +219,7 @@ In Nuxt you just have to use the "and" param after a post query for categories.
 $wp.posts().categories([1,2]).param('and', true)
 ```
 
+<a name="epp-cpt"/>
 #### Custom post types
 
 The ***WordPress*** Rest API is providing endpoints for custom post types, as
@@ -203,6 +236,7 @@ $wp.cpt('movies').id( 7 )
 The `cpt` function returns cpt-objects similar to the `posts()` or `pages()`
 queries, meta fields are included.
 
+<a name="tasks"/>
 ## Task Management
 
 To help you with some of the common tasks in **wuxt**, we integrated a bunch of
@@ -213,6 +247,7 @@ are ready to run.
 
 All available tasks are listed below.
 
+<a name="containers"/>
 ### Working with the containers
 
 Working with ***Docker*** is awesome, but has some drawbacks. One of them is
@@ -236,6 +271,7 @@ Example: `gulp wuxt-yarn -c "add nuxt-webfontloader"`
 The commands are checking if the containers are running and installing needed
 dependencies automatically. So if ***WP-CLI*** is not installed in the container it will be installed before running a `wp` command.
 
+<a name="scaffolding"/>
 ## Scaffolding
 
 There are some tasks you repeat in every ***WordPress*** project. One of them is creating post types. To make that task easy, we added the `wuxt-generate-cpt` task. You just have to input post type slug and name,
@@ -248,6 +284,7 @@ theme and loaded automatically by the theme.
 
 To query the new post-type you can use the `cpt` method of the **wuxt** `$wp` object.
 
+<a name="cred"/>
 ## Credits
 
 [@yashha](https://github.com/yashha/wp-nuxt/commits?author=yashha) for the excelent idea with the `$wp` object, first implemented in [https://github.com/yashha/wp-nuxt](https://github.com/yashha/wp-nuxt)
