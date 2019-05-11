@@ -34,7 +34,7 @@ services:
             - '3000:3000'
         volumes:
             - ./nuxt:/var/www/app
-        command: bash -c "yarn install && yarn nodemon"
+        command: bash -c "yarn install && yarn dev"
 
 networks:
     default:

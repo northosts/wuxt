@@ -19,6 +19,7 @@
     require_once(dirname(__FILE__) . '/api-extensions/menu.php');
     require_once(dirname(__FILE__) . '/api-extensions/slug.php');
     require_once(dirname(__FILE__) . '/api-extensions/meta.php');
+    require_once(dirname(__FILE__) . '/api-extensions/relation.php');
 
 
     /**

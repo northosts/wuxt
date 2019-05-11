@@ -170,6 +170,26 @@ default. For two of the most common plugins, ACF and Yoast WordPress SEO, we
 have automatically added the values of these fields. They are located in the
 `meta` section of the response objects.
 
+#### Taxonomy queries
+
+Taxonomy queries are limited of the simple WordPress Rest API url structure.
+Especially with filtering queries, we struggled with the missing relation
+parameter in queries for posts by taxonomy. We added this feature with a new
+parameter to the WordPress API:
+
+```
+GET: /wp-json/wp/v2/posts/?categories=1,2&and=true
+```
+
+***Note:*** *Setting the relation to "and" will cause all taxonomy queries to
+use it. Right now you cant query one taxonomy with "and" and another with "or".*
+
+In Nuxt you just have to use the "and" param after a post query for categories.
+
+```
+$wp.posts().categories([1,2]).param('and', true)
+```
+
 #### Custom post types
 
 The ***WordPress*** Rest API is providing endpoints for custom post types, as
