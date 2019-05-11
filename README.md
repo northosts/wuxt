@@ -22,8 +22,8 @@ the most awesome front-end application framework yet.
 - [Scaffolding](#scaffolding)
 - [Credits](#cred)
 
-<a name="intro"/>
 ## Introduction
+<a name="intro"/>
 
 The goal of Wuxt is to provide a ready to use development environment, which makes the
 full power of **_WordPress_** easily available to your front-and app. Included
