@@ -4,4 +4,6 @@ _db
 wp-content/themes/twenty*
 wp-content/uploads/*
 wp-content/plugins/*
+wp-content/themes/wuxt/cpts/*
+!wp-content/themes/wuxt/cpts/index.php
 .DS_Store
