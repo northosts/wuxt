@@ -77,6 +77,12 @@ Your containers are available at
 ### Setup **_WordPress_**
 <a name="setup-wp"/>
 
+In short:
+
+- Install WordPress (`http://localhost:3080/install.php`)
+- Set permalinks to *Post name* (`http://localhost:3080/wp-admin/options-permalink.php`)
+- Activate **wuxt**-theme (`http://localhost:3080/wp-admin/themes.php`)
+
 Do a common **_WordPress_** installation at
 `http://localhost:3080/install.php`, then login to wp-admin and select the
 **wuxt** theme to activate all the API extensions. Additionally you might want
