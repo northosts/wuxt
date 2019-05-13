@@ -25,9 +25,11 @@
     /**
     *  Include Custom post types
     */
-    foreach ( scandir( dirname(__FILE__) . '/cpts/' ) as $filename ) {
-        $path = dirname(__FILE__) . '/cpts/' . $filename;
-        if ( is_file( $path ) ) {
-            require_once( $path );
-        }
+    if ( is_dir(  dirname(__FILE__) . '/cpts/' ) ) {
+      foreach ( scandir( dirname(__FILE__) . '/cpts/' ) as $filename ) {
+          $path = dirname(__FILE__) . '/cpts/' . $filename;
+          if ( is_file( $path ) ) {
+              require_once( $path );
+          }
+      }
     }

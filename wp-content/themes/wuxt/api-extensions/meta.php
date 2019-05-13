@@ -6,8 +6,7 @@
 
     function wuxt_register_acf_meta() {
 
-        if(in_array('advanced-custom-fields/acf.php', apply_filters('active_plugins', get_option('active_plugins'))) ||
-           in_array('advanced-custom-fields-pro/acf.php', apply_filters('active_plugins', get_option('active_plugins')))){
+        if( function_exists( 'acf_get_field_groups' ) ){
             $result = array();
             $acf_field_groups = acf_get_field_groups();
             foreach( $acf_field_groups as $acf_field_group) {
