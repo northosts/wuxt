@@ -26,7 +26,7 @@ the most awesome front-end application framework yet.
 <a name="intro"/>
 
 The goal of Wuxt is to provide a ready to use development environment, which makes the
-full power of **_WordPress_** easily available to your front-and app. Included
+full power of **_WordPress_** easily available to your front-end app. Included
 in Wuxt are:
 
 -   Fully dockerized **_WordPress_** and **_nuxt.js_** container configuration,
