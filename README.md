@@ -188,13 +188,13 @@ GET: /wp-json/wuxt/v1/slug/<post-or-page-slug>
 GET: /wp-json/wuxt/v1/slug/<post-or-page-slug>?_embed
 ```
 
-The **_WordPress_** Rest API is not providing an endpoint to get posts or pages
-by slug. That doesn't mirror the **_WordPress_** theme default behaviour,
-where the url-slug can point to both a page or a post.
+The **_WordPress_** Rest API is not providing a single endpoint to get both posts and pages 
+by slug.
 
-With the `slug` endpoint we add that function, which is first looking for a post
-with the given slug and then for a page. The `embed` parameter is working for
-the `slug` endpoint.
+To mirror the **_WordPress_** theme default behaviour we created a `slug` endpoint. 
+With the `slug` endpoint you are able to get both posts and pages with the same endpoint. 
+irst it checks if the given slug is a post, if not it will look for a page. The `embed` 
+parameter is working for the `slug` endpoint.
 
 #### Meta fields
 <a name="epp-meta"/>
