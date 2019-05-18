@@ -12,14 +12,10 @@
     }
 
 
-    /**
-    *  REST API functions for nuxt.js
-    */
-    require_once(dirname(__FILE__) . '/api-extensions/front-page.php');
-    require_once(dirname(__FILE__) . '/api-extensions/menu.php');
-    require_once(dirname(__FILE__) . '/api-extensions/slug.php');
-    require_once(dirname(__FILE__) . '/api-extensions/meta.php');
-    require_once(dirname(__FILE__) . '/api-extensions/relation.php');
+    add_action('init', 'wuxt_register_menu');
+    function wuxt_register_menu() {
+        register_nav_menu('main', __('Main meny'));
+    }    
 
 
     /**
