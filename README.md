@@ -16,6 +16,7 @@ the most awesome front-end application framework yet.
     - [Slugs](#epp-slugs)
     - [Meta queries](#epp-meta)
     - [Taxonomy queries](#epp-tax)
+    - [Geo queries](#epp-geo)
     - [Custom post types](#epp-cpt)
 - [Task Management](#tasks)
   - [Working with the containers](#containers)
@@ -226,6 +227,7 @@ $wp.posts().categories([1,2]).param('and', true)
 ```
 
 #### Geo Queries
+<a name="epp-geo"/>
 
 If your application has to get posts by geographical proximity, you can use the geo parameters.
 
