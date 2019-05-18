@@ -55,6 +55,17 @@ That means you can get posts which are either in category A or B. Our adjustment
 lets you switch all tax_queries to an AND-relation, so that you can select posts
 which are both in category A and B.
 
+* <code>GET</code> <code>/wp-json/wp/v2/posts/?coordinates=&lt;lat&gt;,&lt;lng&gt;&distance=&lt;distance&gt;</code>
+
+If your application has to get posts by geographical proximity, you can use these
+queries. The coordinates parameter has to contain lat and lng, comma-separated.
+The default meta-keys the query is comparing with are "lat" and "lng". If the
+values are saved in other meta-fields you can prefix the lat and lng values, like:
+<code>&lt;meta_key&gt;:&lt;coordinate&gt;</code>, e.g.
+<code>coordinates=lat_meta_key:52.585,lng_meta_key:13.373</code>. The distance
+parameter is in kilometers by default, use a "m" for miles after the distance
+value, e.g. <code>distance=13m</code>.
+
 * **WordPress SEO meta fields** are included automatically in the
 <code>meta</code> object if the plugin is activated.
 * **Advanced custom fields** are included automatically in the <code>meta</code>

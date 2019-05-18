@@ -225,6 +225,19 @@ In Nuxt you just have to use the "and" param after a post query for categories.
 $wp.posts().categories([1,2]).param('and', true)
 ```
 
+#### Geo Queries
+
+If your application has to get posts by geographical proximity, you can use the geo parameters.
+
+    GET /wp-json/wp/v2/posts/?coordinates=<lat>,<lng>&distance=<distance>
+
+The coordinates parameter has to contain lat and lng, comma-separated and each value can be prefixed with the meta-key if has to be compared with (default keys: `lat`, `lng`). The distance is calculated in kilometers, postfix the value with **m** for miles. Some example queries:
+
+     GET /wp-json/wp/v2/posts/?coordinates=52.585,13.373&distance=10
+     GET /wp-json/wp/v2/posts/?coordinates=lat_mkey:52.585,lng_mkey:13.373&distance=10
+     GET /wp-json/wp/v2/posts/?coordinates=52.585,13.373&distance=10m
+
+
 #### Custom post types
 <a name="epp-cpt"/>
 

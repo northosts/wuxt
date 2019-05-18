@@ -22,3 +22,6 @@
 
      // activating AND-relations for tax-queries
      require_once(dirname(__FILE__) . '/extensions/relation.php');
+
+     // activating geo queries
+     require_once(dirname(__FILE__) . '/extensions/geo.php');
