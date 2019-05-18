@@ -26,7 +26,7 @@ the most awesome front-end application framework yet.
 <a name="intro"/>
 
 The goal of Wuxt is to provide a ready to use development environment, which makes the
-full power of **_WordPress_** easily available to your front-and app. Included
+full power of **_WordPress_** easily available to your front-end app. Included
 in Wuxt are:
 
 -   Fully dockerized **_WordPress_** and **_nuxt.js_** container configuration,
@@ -104,8 +104,8 @@ command we use for running the **_nuxt.js_** server is `yarn dev`. Check
 if the front-end is running by opening `http://localhost:3000`. You should
 be greeted by the **Wuxt** intro-screen.
 
-Check even if **_BrowserSync_** is running, by doing a minor change to the
-front-page. The change should directly be visible on the front-page as well.
+Check if **_BrowserSync_** is running, by doing a minor change to the
+front-page. The change should directly be visible on the front-page without manually reloading the page.
 
 ## WordPress Rest API endpoints
 <a name="ep"/>
