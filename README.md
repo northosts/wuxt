@@ -6,6 +6,7 @@
 the most awesome front-end application framework yet.
 
 - [Introduction](#intro)
+- [Quick start](#quick)
 - [Architecture](#env)  
 - [Getting started](#start)
   - [Setup WordPress](#setup-wp)
@@ -25,6 +26,18 @@ the most awesome front-end application framework yet.
 - [Links](#links)
 - [Credits](#cred)
 
+## Quick start
+<a name="quick"/>
+
+    git clone https://github.com/northosts/wuxt.git
+    cd wuxt
+    docker-compose up -d
+    
+- [http://localhost:3080/install.php](http://localhost:3080/install.php) - Install WordPress
+- [http://localhost:3080/wp-admin/options-permalink.php](http://localhost:3080/wp-admin/options-permalink.php) - Set permalinks to *Post name*
+- [http://localhost:3080/wp-admin/themes.php](http://localhost:3080/wp-admin/themes.php) - Activate **wuxt**-theme
+- [http://localhost:3000](http://localhost:3000) - Done
+    
 ## Introduction
 <a name="intro"/>
 
