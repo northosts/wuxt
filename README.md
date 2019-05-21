@@ -22,6 +22,7 @@ the most awesome front-end application framework yet.
 - [Task Management](#tasks)
   - [Working with the containers](#containers)
 - [Scaffolding](#scaffolding)
+- [Links](#links)
 - [Credits](#cred)
 
 ## Introduction
@@ -310,6 +311,11 @@ The custom post type definition is copied into the `cpts` folder of the wuxt
 theme and loaded automatically by the theme.
 
 To query the new post-type you can use the `cpt` method of the **wuxt** `$wp` object.
+
+## Links
+<a name="links"/>
+
+[WUXT Headless WordPress API Extensions](https://wordpress.org/plugins/wuxt-headless-wp-api-extensions/): Plugin which includes all our API extensions.
 
 ## Credits
 <a name="cred"/>
