@@ -5,7 +5,7 @@
      *        $menuItems = $mainMenu->getTree();
      *        $menuItems = $mainMenu->getMenuItems();
     */
-    class Menu {
+    class wuxt_Menu {
     	protected $menu;
     	protected $tree;
 

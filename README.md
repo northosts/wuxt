@@ -1,11 +1,12 @@
-![Wuxt logo](wuxt.png?raw=true "Wuxt")
+![Wuxt logo](_assets/wuxt.png?raw=true "Wuxt")
 
 # Wuxt - nuxt.js and WordPress development environment
 
 **Wuxt** combines **_WordPress_**, the worlds biggest CMS with **_nuxt.js_**,
 the most awesome front-end application framework yet.
 
-- [Introduction](#intro)  
+- [Introduction](#intro)
+- [Architecture](#env)  
 - [Getting started](#start)
   - [Setup WordPress](#setup-wp)
   - [Setup Nuxt.js](#setup-nuxt)  
@@ -44,6 +45,11 @@ All together the **Wuxt** features get you started with your front-end with just
 one command, you just need to work with the intuitive WordPress admin interface
 and can skip all back-end coding. But if you know your way around
 **_WordPress_** you are able to easily extend the back-end as well.
+
+## The WUXT architecture
+<a name="env"/>
+
+![WUXT environment](_assets/wuxt-env.png?raw=true "WUXT environment")
 
 ## Getting started
 <a name="start"/>

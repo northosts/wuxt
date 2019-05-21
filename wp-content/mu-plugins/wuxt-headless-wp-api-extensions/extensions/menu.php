@@ -30,7 +30,7 @@
 
         $menu_name = $menu_obj->slug;
 
-        $menu = new Menu( $menu_name );
+        $menu = new wuxt_Menu( $menu_name );
 
         return $menu->getTree();
     }
