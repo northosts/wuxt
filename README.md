@@ -5,8 +5,8 @@
 **Wuxt** combines **_WordPress_**, the worlds biggest CMS with **_nuxt.js_**,
 the most awesome front-end application framework yet.
 
-- [Introduction](#intro)
 - [Quick start](#quick)
+- [Introduction](#intro)
 - [Architecture](#env)  
 - [Getting started](#start)
   - [Setup WordPress](#setup-wp)
