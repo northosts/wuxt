@@ -25,3 +25,6 @@
 
      // activating geo queries
      require_once(dirname(__FILE__) . '/extensions/geo.php');
+
+     // activating generate queries
+     require_once(dirname(__FILE__) . '/extensions/generate.php');
