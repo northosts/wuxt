@@ -30,11 +30,7 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    ...[
-      process.env.NODE_ENV === 'development'
-        ? { src: '~/plugins/wp-api-docker-connector', ssr: false }
-        : []
-    ]
+    { src: '~/plugins/wp-api-docker-connector', ssr: false }
   ],
 
   /*
