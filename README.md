@@ -11,6 +11,7 @@ the most awesome front-end application framework yet.
 - [Getting started](#start)
   - [Setup WordPress](#setup-wp)
   - [Setup Nuxt.js](#setup-nuxt)  
+- [Generate and Deploy](#deploy)
 - [WordPress Rest API endpoints](#ep)
   - [Extensions to the API endpoints](#epp)
     - [Front-page](#epp-front)
@@ -32,12 +33,12 @@ the most awesome front-end application framework yet.
     git clone https://github.com/northosts/wuxt.git
     cd wuxt
     docker-compose up -d
-    
+
 - [http://localhost:3080/install.php](http://localhost:3080/install.php) - Install WordPress
 - [http://localhost:3080/wp-admin/options-permalink.php](http://localhost:3080/wp-admin/options-permalink.php) - Set permalinks to *Post name*
 - [http://localhost:3080/wp-admin/themes.php](http://localhost:3080/wp-admin/themes.php) - Activate **wuxt**-theme
 - [http://localhost:3000](http://localhost:3000) - Done
-    
+
 ## Introduction
 <a name="intro"/>
 
@@ -127,6 +128,66 @@ be greeted by the **Wuxt** intro-screen.
 
 Check if **_BrowserSync_** is running, by doing a minor change to the
 front-page. The change should directly be visible on the front-page without manually reloading the page.
+
+## Generate and Deploy
+<a name="deploy"/>
+
+To make a complete deploy of WUXT, you have to get at least one server and solve
+a lot of configuration stuff to get **_WordPress_**, **_MySql_** and **_nuxt.js_**
+running (we are working on a manual for some of the big cloud services).
+
+However, there is an easier solution, at least without on-site user generated
+content, like **_WordPress_**-comments (**_disqus_** would be ok, though). We
+have tweaked the **_nuxt.js_** *generate*-command, so that you can generate a
+fully static site with all your content, posts and pages inside the `dist`
+directory of **_nuxt_**. Then it's only a matter of getting the static html-site
+uploaded to a webspace of your choice.
+
+### Generating a fully static site
+
+First be sure your containers are running
+
+    docker-compose up -d
+
+Then go to the wuxt root-directory and run *generate* with yarn
+
+    yarn generate
+
+Despite generating your static site, this commands runs some `docker-compose`
+action, so while generating, your WUXT site will be down and started again
+after.
+
+After the generation there will be started a small local web-server, which deploys
+the static site on
+
+    http://localhost:8080
+
+To get the files you go to the `dist` directory inside your `wuxt/nuxt` directory:
+
+    wuxt/nuxt/dist
+
+To shut down the local web-server you have to run the following command insie the
+`wuxt` directory:
+
+    docker-compose -f dist.yml down
+
+### How it works
+
+The *generate*-command simply scrapes all available urls you added to your
+**_nuxt.js_** and **_WordPress_** installation, saves the html-output and caches
+the JSON-requests to the **_WordPress_** Rest API.
+
+To know which urls are available, the generate command asks the **_WordPress_**
+Rest API for a list of existing endpoints and all links used in the
+**_WordPress_** menus. You can view that list with the following endpoint:
+
+    GET: /wp-json/wuxt/v1/generate
+
+Since **_nuxt.js_** doesn't fully support 100% static sites yet, we have to get
+help of the `static` plugin used on **_nuxt.org_**, which is jsut taking care
+of the payload caching. Read more [here](https://github.com/nuxt/rfcs/issues/22)
+and [here](https://github.com/nuxt/nuxtjs.org/tree/master/modules/static).
+
 
 ## WordPress Rest API endpoints
 <a name="ep"/>

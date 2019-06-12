@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "docker exec front.wuxt yarn generate && docker-compose -f dist.yml restart && docker-compose down && docker-compose up -d"
+    "generate": "docker exec front.wuxt yarn generate && docker-compose --log-level CRITICAL -f dist.yml up -d && docker-compose --log-level CRITICAL -f dist.yml restart && docker-compose --log-level CRITICAL down && docker-compose --log-level CRITICAL up -d"
   },
   "repository": {
     "type": "git",
