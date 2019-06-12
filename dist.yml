@@ -1,0 +1,18 @@
+version: '2'
+services:
+
+    dist.wuxt:
+        container_name: dist.wuxt
+        image: nginx:alpine
+        working_dir: '/usr/share/nginx/html'
+        environment:
+            - HOST=0.0.0.0
+        ports:
+            - '8080:80'
+        volumes:
+            - ./nuxt/dist:/usr/share/nginx/html
+        networks:
+            - dist
+
+networks:
+    dist:

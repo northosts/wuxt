@@ -7,3 +7,4 @@ wp-content/plugins/*
 wp-content/themes/wuxt/cpts/*
 !wp-content/themes/wuxt/cpts/index.php
 .DS_Store
+nuxt/dist/*

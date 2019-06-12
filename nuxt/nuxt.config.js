@@ -39,6 +39,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '~/modules/static/',
     [
       '~/modules/wp-api/index',
       {

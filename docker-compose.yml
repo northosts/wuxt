@@ -23,7 +23,6 @@ services:
           WORDPRESS_DB_USER: root
           WORDPRESS_DB_PASSWORD: dev
 
-
     front.wuxt:
         container_name: front.wuxt
         image: node:11-slim
