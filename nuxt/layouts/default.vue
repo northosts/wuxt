@@ -25,7 +25,6 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Nunito:700,600,400|Open+Sans:400,700');
-
 $primary: #37495c;
 $secondary: #48b884;
 

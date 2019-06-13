@@ -1,3 +1,4 @@
+const axios = require('axios')
 const pkg = require('./package')
 
 module.exports = {
@@ -24,14 +25,12 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['@/assets/styles/main.scss'],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    { src: '~/plugins/wp-api-docker-connector', ssr: false }
-  ],
+  plugins: [{ src: '~/plugins/wp-api-docker-connector', ssr: false }],
 
   /*
    ** Nuxt.js modules
@@ -40,6 +39,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '~/modules/static/',
     [
       '~/modules/wp-api/index',
       {
@@ -72,5 +72,13 @@ module.exports = {
     //     })
     //   }
     // }
+  },
+
+  generate: {
+    routes: function() {
+      return axios
+        .get('http://wp.wuxt:80/wp-json/wuxt/v1/generate')
+        .then(({ data }) => data)
+    }
   }
 }
