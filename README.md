@@ -1,6 +1,6 @@
 ![Wuxt logo](_assets/wuxt.png?raw=true "Wuxt")
 
-# Wuxt - nuxt.js and WordPress development environment
+# Nuxt/WordPress development environment - Wuxt
 
 **Wuxt** combines **_WordPress_**, the worlds biggest CMS with **_nuxt.js_**,
 the most awesome front-end application framework yet.
