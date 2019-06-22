@@ -15,7 +15,7 @@
     add_action('init', 'wuxt_register_menu');
     function wuxt_register_menu() {
         register_nav_menu('main', __('Main meny'));
-    }    
+    }
 
 
     /**
@@ -24,6 +24,18 @@
     if ( is_dir(  dirname(__FILE__) . '/cpts/' ) ) {
       foreach ( scandir( dirname(__FILE__) . '/cpts/' ) as $filename ) {
           $path = dirname(__FILE__) . '/cpts/' . $filename;
+          if ( is_file( $path ) ) {
+              require_once( $path );
+          }
+      }
+    }
+
+    /**
+    *  Include Taxonomies
+    */
+    if ( is_dir(  dirname(__FILE__) . '/taxonomies/' ) ) {
+      foreach ( scandir( dirname(__FILE__) . '/taxonomies/' ) as $filename ) {
+          $path = dirname(__FILE__) . '/taxonomies/' . $filename;
           if ( is_file( $path ) ) {
               require_once( $path );
           }
