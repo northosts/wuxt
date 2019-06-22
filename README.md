@@ -375,7 +375,7 @@ container, just use the following ***npm***-script:
 
     npm run wp <wp-cli-command>
 
-Examples: `npm run wp-cli plugin list`, `npm run wp-cli plugin install advanced-custom-fields`, `npm run wp-cli user create wuxt me@wuxt.io`
+Examples: `npm run wp plugin list`, `npm run wp plugin install advanced-custom-fields`, `npm run wp user create wuxt me@wuxt.io`
 
 The same concept we use for ***yarn*** in the front container:
 
