@@ -7,6 +7,8 @@ services:
             - ./_db:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: dev
+        networks:
+          - default
 
     wp.wuxt:
         container_name: wp.wuxt
@@ -22,6 +24,8 @@ services:
           WORDPRESS_DB_NAME: wuxt
           WORDPRESS_DB_USER: root
           WORDPRESS_DB_PASSWORD: dev
+        networks:
+          - default
 
     front.wuxt:
         container_name: front.wuxt
@@ -34,6 +38,8 @@ services:
         volumes:
             - ./nuxt:/var/www/app
         command: bash -c "yarn install && yarn dev"
+        networks:
+          - default
 
 networks:
     default:
