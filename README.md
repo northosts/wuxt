@@ -21,9 +21,10 @@ the most awesome front-end application framework yet.
     - [Taxonomy queries](#epp-tax)
     - [Geo queries](#epp-geo)
     - [Custom post types](#epp-cpt)
-- [Task Management](#tasks)
-  - [Working with the containers](#containers)
-- [Scaffolding](#scaffolding)
+- [Scripts](#scripts)
+  - [Working with the containers](#scripts-containers)
+    - [WP-CLI and yarn](#scripts-containers-tools)
+  - [Scaffolding](#scripts-scaffolding)
 - [Links](#links)
 - [Credits](#cred)
 
@@ -338,58 +339,90 @@ $wp.cpt('movies').id( 7 )
 The `cpt` function returns cpt-objects similar to the `posts()` or `pages()`
 queries, meta fields are included.
 
-## Task Management
-<a name="tasks"/>
+## Scripts
+<a name="scripts"/>
 
 To help you with some of the common tasks in **wuxt**, we integrated a bunch of
-***gulp*** tasks. Just install the needed packages in the root directory and you
+**npm** scripts. Just install the needed packages in the root directory and you
 are ready to run.
 
     npm install
 
-All available tasks are listed below.
-
 ### Working with the containers
-<a name="containers"/>
+<a name="scripts-containers"/>
 
 Working with ***Docker*** is awesome, but has some drawbacks. One of them is
-that you have to make some changes from inside the container. Two of the most common tasks are managing ***WordPress*** and installing new packages
+that you have to make some changes from inside the container. To
+enter the **WUXT** containers, you can use the following ***npm***
+scripts:
+
+    npm run enter:mysql
+    npm run enter:wp
+    npm run enter:front
+
+You exit a container with `exit`.
+
+#### WP-CLI and yarn
+<a name="scripts-containers-tools"/>
+
+Two of the most
+common tasks are managing ***WordPress*** and installing new packages
 in the front-end.
 
-Managing ***WordPress*** **wuxt** provides you with the full power of the
+**WUXT** provides you with the full power of the
 ***WP-CLI*** tool. Check out all documentation at [https://developer.wordpress.org/cli/commands/](https://developer.wordpress.org/cli/commands/). To run any ***WP-CLI*** command inside the `wp.wuxt`
-container, just use the following ***gulp***-task:
+container, just use the following ***npm***-script:
 
-    gulp wuxt-wp -c "<command>"
+    npm run wp <wp-cli-command>
 
-Examples: `gulp wuxt-wp -c "plugin list"`, `gulp wuxt-wp -c "plugin install advanced-custom-fields"`, `gulp wuxt-wp -c "user create wuxt me@wuxt.io"`
+Examples: `npm run wp-cli plugin list`, `npm run wp-cli plugin install advanced-custom-fields`, `npm run wp-cli user create wuxt me@wuxt.io`
 
 The same concept we use for ***yarn*** in the front container:
 
-    gulp wuxt-yarn -c "<command>"
+    npm run yarn <yarn-command>
 
-Example: `gulp wuxt-yarn -c "add nuxt-webfontloader"`
+Example: `npm run yarn add nuxt-webfontloader`
 
 The commands are checking if the containers are running and installing needed
 dependencies automatically. So if ***WP-CLI*** is not installed in the container it will be installed before running a `wp` command.
 
-## Scaffolding
-<a name="scaffolding"/>
+### Scaffolding
+<a name="scripts-scaffolding"/>
 
-There are some tasks you repeat in every ***WordPress*** project. One of them is creating post types. To make that task easy, we added the `wuxt-generate-cpt` task. You just have to input post type slug and name,
-everything else is taken care of:
+**WUXT** allows you to generate custom post types and taxonomies via ***npm***
+scripts. You can pass needed parameters as arguments. If you don't pass
+arguments, you will get prompted.
 
-    gulp wuxt-generate-cpt
+**Scaffolding a post type**
+
+    npm run scaffold:cpt <name>
+
+    # Examples:
+    npm run scaffold:cpt
+    npm run scaffold:cpt Movie
 
 The custom post type definition is copied into the `cpts` folder of the wuxt
 theme and loaded automatically by the theme.
 
 To query the new post-type you can use the `cpt` method of the **wuxt** `$wp` object.
 
+**Scaffolding a taxonomy**
+
+    npm run scaffold:tax <name> <post-types>
+
+    # Examples:
+    npm run scaffold:tax
+    npm run scaffold:tax Venue event,cafe
+
+The taxonomy definition is copied into the `taxonomies` folder of the wuxt
+theme and loaded automatically by the theme.
+
 ## Links
 <a name="links"/>
 
 [WUXT Headless WordPress API Extensions](https://wordpress.org/plugins/wuxt-headless-wp-api-extensions/): Plugin which includes all our API extensions.
+
+[Nuxt + WordPress = WUXT](https://www.danielauener.com/nuxt-js-wordpress-wuxt/): Introduction post for WUXT.
 
 ## Credits
 <a name="cred"/>

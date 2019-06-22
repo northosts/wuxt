@@ -6294,10 +6294,10 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt-webfontloader@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/nuxt-webfontloader/-/nuxt-webfontloader-1.0.0.tgz#99a05bf56f9ed95e88df30154216bf93f9187629"
-  integrity sha512-1YsAzAN2SZGmrf9LvOrpGdnffEeOnh426NUgkhdMLDRSJxk6qdo+M23julOtAJPaF4oXE4rx9okGvDDFvvGUkg==
+nuxt-webfontloader@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/nuxt-webfontloader/-/nuxt-webfontloader-1.1.0.tgz#68b47ffbeaee4c41969f42f57a86946e0c36715c"
+  integrity sha512-GyDgABmI0Oq54s2tA9SZC28TmHy2xGdWSXrfcGPPfDBVhgQQlGL5CJcAlvovcuhefzzZrzGgs35HIcv5qym4fQ==
   dependencies:
     webfontloader "^1.6.28"
 

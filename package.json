@@ -5,6 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "enter:front": "docker exec -ti front.wuxt bash",
+    "enter:wp": "docker exec -ti wp.wuxt bash",
+    "enter:mysql": "docker exec -ti mysql.wuxt bash",
+    "wp": "node ./_scripts/tools/wp.js",
+    "yarn": "node ./_scripts/tools/yarn.js",
+    "scaffold:cpt": "node ./_scripts/scaffold/cpt.js",
+    "scaffold:tax": "node ./_scripts/scaffold/taxonomy.js",
     "generate": "docker exec front.wuxt yarn generate && docker-compose --log-level CRITICAL -f dist.yml up -d && docker-compose --log-level CRITICAL -f dist.yml restart && docker-compose --log-level CRITICAL down && docker-compose --log-level CRITICAL up -d"
   },
   "repository": {
@@ -25,10 +32,9 @@
   },
   "homepage": "https://github.com/northosts/wuxt#readme",
   "devDependencies": {
-    "gulp": "^4.0.1",
     "mkdirp": "^0.5.1",
     "prompt": "^1.0.0",
-    "require-dir": "^1.2.0"
+    "slugify": "^1.3.4"
   },
   "dependencies": {
     "cross-env": "^5.2.0"

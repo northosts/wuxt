@@ -45,7 +45,7 @@ module.exports = {
    */
   runWPCli: function(container, done) {
 
-    var command = process.argv.slice(process.argv.indexOf('-c') + 1);
+    var command = process.argv.slice(2);
 
     if (!command.length) {
       console.log('ERROR: Provide a valid wp-cli command!');
@@ -66,8 +66,8 @@ module.exports = {
    */
   runYarn: function(container, done) {
 
-    var command = process.argv.slice(process.argv.indexOf('-c') + 1);
-
+    var command = process.argv.slice(2);
+    
     if (!command.length) {
       console.log('ERROR: Provide a valid yarn command!');
       return done();
@@ -83,24 +83,52 @@ module.exports = {
   },
 
   /**
+   * Get Arguments
+   */
+  getArgs: function(prompts, done) {
+
+    if (Array.isArray(prompts)) {
+      var result = {};
+      var i = 2;
+      prompts.forEach(function(prompt) {
+        if (process.argv[i] && prompt.pattern.test(process.argv[i])) {
+          result[prompt.name] = process.argv[i];
+        } else {
+          result = false;
+        }
+        i++;
+      });
+
+      if (result) {
+        return done(null, result);
+      }
+    }
+
+    var prompt = require('prompt');
+    prompt.start();
+
+    prompt.get(prompts, function(err, result) {
+      if (err) {
+        return done('Something wrong with your input!', null);
+      }
+
+      done(null, result);
+
+    });
+
+  },
+
+  /**
    * Generate custom post type
    */
   generateWPCPT: function(container, done) {
 
-    var prompt = require('prompt');
+    var slugify = require('slugify');
     var exec = require('child_process').exec;
     var fs = require('fs');
     var mkdirp = require('mkdirp');
 
-    prompt.start();
-
-    prompt.get([{
-      name: 'slug',
-      description: 'Enter your post types slug, e.g. movie',
-      type: 'string',
-      pattern: /^\w+$/,
-      message: 'Slug must be a word'
-    },{
+    this.getArgs([{
       name: 'name',
       description: 'Enter your post types name, e.g. Movie',
       type: 'string',
@@ -108,7 +136,14 @@ module.exports = {
       message: 'Name must be a word'
     }], function(err, result) {
 
-      exec('docker exec ' + container + ' bash -c \'wp --allow-root scaffold post-type ' + result.slug + ' --label=' + result.name + ' --textdomain=wuxt\'', function(error, stdout, stderr) {
+      if (err) {
+        console.log(err);
+        return done();
+      }
+
+      var slug = slugify(result.name, { lower: true });
+
+      exec('docker exec ' + container + ' bash -c \'wp --allow-root scaffold post-type ' + slug + ' --label=' + result.name + ' --textdomain=wuxt\'', function(error, stdout, stderr) {
         if (!error) {
 
           mkdirp('./wp-content/themes/wuxt/cpts', function (err) {
@@ -119,7 +154,7 @@ module.exports = {
 
             stdout = stdout.replace('\'title\', \'editor\'', '\'title\', \'editor\', \'custom-fields\'')
 
-            fs.writeFile('./wp-content/themes/wuxt/cpts/' + result.slug + '.php', stdout, function(err) {
+            fs.writeFile('./wp-content/themes/wuxt/cpts/' + slug + '.php', stdout, function(err) {
               if (err) {
                 console.log('ERROR: Could not create post-type (' + err + ').')
                 return;
@@ -130,6 +165,65 @@ module.exports = {
           });
         } else {
           console.log('ERROR: Could not create post-type (' + error + ').')
+        }
+      }).on('exit', function(code) {
+        done();
+      });
+
+    });
+  },
+
+  /**
+   * Generate custom post type
+   */
+  generateWPTax: function(container, done) {
+
+    var slugify = require('slugify');
+    var exec = require('child_process').exec;
+    var fs = require('fs');
+    var mkdirp = require('mkdirp');
+
+    this.getArgs([{
+      name: 'name',
+      description: 'Enter your taxonomies name, e.g. Venue',
+      type: 'string',
+      pattern: /^\w+$/,
+      message: 'Name must be a word'
+    },{
+      name: 'cpts',
+      description: 'Enter a commaseparated list of post types for the taxonomy, e.g. event,presentation',
+      type: 'string',
+      pattern: /^\w+(,\w+)*$/,
+      message: 'CPTs must be a list of post type slugs'
+    }], function(err, result) {
+
+      if (err) {
+        console.log(err);
+        return done();
+      }
+
+      var slug = slugify(result.name, { lower: true });
+
+      exec('docker exec ' + container + ' bash -c \'wp --allow-root scaffold taxonomy ' + slug + ' --label=' + result.name + ' --post_types=' + result.cpts + ' --textdomain=wuxt\'', function(error, stdout, stderr) {
+        if (!error) {
+
+          mkdirp('./wp-content/themes/wuxt/taxonomies', function (err) {
+            if (err) {
+              console.log('ERROR: Could not create taxonomy (' + err + ').')
+              return;
+            }
+
+            fs.writeFile('./wp-content/themes/wuxt/taxonomies/' + slug + '.php', stdout, function(err) {
+              if (err) {
+                console.log('ERROR: Could not create taxonomy (' + err + ').')
+                return;
+              }
+
+              console.log('SUCCESS: Taxonomy ' + result.name + ' created.');
+            });
+          });
+        } else {
+          console.log('ERROR: Could not create taxonomy (' + error + ').')
         }
       }).on('exit', function(code) {
         done();
