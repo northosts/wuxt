@@ -19,6 +19,7 @@
         "cross-env": "^5.2.0",
         "express": "^4.16.4",
         "fstream": "^1.0.12",
+        "lodash": "^4.17.15",
         "nuxt": "2.8.1",
         "nuxt-webfontloader": "^1.1.0",
         "wpapi": "^1.2.1"
