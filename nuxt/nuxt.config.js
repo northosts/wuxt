@@ -4,6 +4,10 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
 
+  env: {
+    WUXT_PORT_BACKEND: process.env.WUXT_PORT_BACKEND || '3080'
+  },
+
   /*
    ** Headers of the page
    */
@@ -43,7 +47,7 @@ module.exports = {
     [
       '~/modules/wp-api/index',
       {
-        endpoint: 'http://wp.wuxt:80/wp-json/'
+        endpoint: 'http://' + (process.env.WUXT_WP_CONTAINER ? process.env.WUXT_WP_CONTAINER : 'wp.wuxt') + ':80/wp-json/'
       }
     ]
   ],
@@ -77,7 +81,7 @@ module.exports = {
   generate: {
     routes: function() {
       return axios
-        .get('http://wp.wuxt:80/wp-json/wuxt/v1/generate')
+        .get('http://' + (process.env.WUXT_WP_CONTAINER ? process.env.WUXT_WP_CONTAINER : 'wp.wuxt') + ':80/wp-json/wuxt/v1/generate')
         .then(({ data }) => data)
     }
   }

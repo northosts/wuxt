@@ -41,3 +41,25 @@
           }
       }
     }
+
+
+    /**
+     * Customize the preview button in the WordPress admin to point to the headless client.
+     *
+     * @param  str $link The WordPress preview link.
+     * @return str The headless WordPress preview link.
+     */
+    function set_headless_preview_link( $link ) {
+    	if (WP_DEBUG === true) {
+    		return 'http://localhost:3000/'
+    			. '_preview/'
+    			. get_the_ID() . '/'
+    			. wp_create_nonce( 'wp_rest' );
+    	} else {
+    		return 'https://localhost:3000/'
+    			. '_preview/'
+    			. get_the_ID() . '/'
+    			. wp_create_nonce( 'wp_rest' );
+    	}
+    }
+    add_filter( 'preview_post_link', 'set_headless_preview_link' );

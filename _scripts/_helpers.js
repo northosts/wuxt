@@ -62,12 +62,48 @@ module.exports = {
   },
 
   /**
+   * Run docker-compose down
+   */
+  dockerDown: function(done) {
+
+    var exec = require('child_process').exec;
+    exec('docker-compose down', function(error, stdout, stderr) {
+      console.log(stdout);
+    }).on('exit', function(code) {
+      done();
+    });
+
+
+  },
+
+  /**
+   * Run docker-compose down
+   */
+  dockerUp: function(done) {
+
+    var exec = require('child_process').exec;
+
+    exec('cat .env', function(error, stdout, stderr) {
+      console.log(stdout);
+    }).on('exit', function(code) {
+
+      exec('docker-compose up --force-recreate -d', function(error, stdout, stderr) {
+        console.log(stdout);
+      }).on('exit', function(code) {
+        done();
+      });
+
+    });
+
+  },
+
+  /**
    * Run a yarn command in the given container
    */
   runYarn: function(container, done) {
 
     var command = process.argv.slice(2);
-    
+
     if (!command.length) {
       console.log('ERROR: Provide a valid yarn command!');
       return done();
@@ -116,6 +152,66 @@ module.exports = {
 
     });
 
+  },
+
+  /**
+   * Change the environment to be able to run multiple wuxt installations
+   */
+  changeEnv: function(done) {
+
+    var fs = require('fs');
+
+    this.getArgs([{
+      name: 'project',
+      description: 'Enter the project name',
+      type: 'string',
+      default: 'wuxt',
+      message: 'Name must be a word'
+    },{
+      name: 'port-front',
+      description: 'Enter the port for nuxt front-end',
+      type: 'number',
+      default: '3000',
+      message: 'Name must be a number'
+    },{
+      name: 'port-wp',
+      description: 'Enter the port for WordPress back-end',
+      type: 'number',
+      default: '3080',
+      message: 'Name must be a number'
+    },{
+      name: 'port-dist',
+      description: 'Enter the port for server with generated html files',
+      type: 'number',
+      default: '8080',
+      message: 'Name must be a number'
+    }], function(err, result) {
+
+      if (err) {
+        console.log(err);
+        return done(err, null, null, null, null);
+      }
+
+      var env = "WUXT_PORT_FRONTEND=" + result['port-front'] + "\n" +
+          "WUXT_PORT_BACKEND=" + result['port-wp'] + "\n" +
+          "WUXT_PORT_DIST=" + result['port-dist'] + "\n" +
+          "WUXT_MYSQL_CONTAINER=mysql." + result['project'] + "\n" +
+          "WUXT_WP_CONTAINER=wp." + result['project'] + "\n" +
+          "WUXT_NUXT_CONTAINER=front." + result['project'] + "\n";
+
+      fs.writeFile('.env', env, function(err) {
+        if (err) {
+          console.log('ERROR: Could not create environment (' + err + ').')
+          return done(err, null, null, null, null);
+        }
+
+        console.log('SUCCESS: New environment created.');
+
+        done(null, result['project'], result['port-wp'], result['port-front'], result['port-dist']);
+
+      });
+
+    });
   },
 
   /**

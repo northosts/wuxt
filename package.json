@@ -9,6 +9,7 @@
     "enter:wp": "docker exec -ti wp.wuxt bash",
     "enter:mysql": "docker exec -ti mysql.wuxt bash",
     "wp": "node ./_scripts/tools/wp.js",
+    "env": "node ./_scripts/tools/env.js",
     "yarn": "node ./_scripts/tools/yarn.js",
     "scaffold:cpt": "node ./_scripts/scaffold/cpt.js",
     "scaffold:tax": "node ./_scripts/scaffold/taxonomy.js",
@@ -37,6 +38,7 @@
     "slugify": "^1.3.4"
   },
   "dependencies": {
-    "cross-env": "^5.2.0"
+    "cross-env": "^5.2.0",
+    "dotenv": "^8.0.0"
   }
 }

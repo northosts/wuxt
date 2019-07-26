@@ -9,6 +9,7 @@ the most awesome front-end application framework yet.
 - [Introduction](#intro)
 - [Architecture](#env)  
 - [Getting started](#start)
+  - [Custom container configuration](#start-custom)
   - [Setup WordPress](#setup-wp)
   - [Setup Nuxt.js](#setup-nuxt)  
 - [Generate and Deploy](#deploy)
@@ -96,6 +97,44 @@ Your containers are available at
 -   front-end: `http://localhost:3000`
 -   back-end: `http://localhost:3080`, `http://localhost:3080/wp-admin`
 -   database: `docker exec -ti mysql.wuxt bash`
+
+### Starting with custom container configuration
+<a name="start-custom"/>
+
+**wuxt** allows you to change the above setup to run multiple projects at the
+same time or to adjust to your own environment. To change ports and container
+names, add an `.env` file in the same directory of your `docker-compose.yml`
+file. You can adjust the following values:
+
+    WUXT_PORT_FRONTEND=3000
+    WUXT_PORT_BACKEND=3080
+    WUXT_PORT_DIST=8080
+    WUXT_MYSQL_CONTAINER=mysql.wuxt
+    WUXT_WP_CONTAINER=wp.wuxt
+    WUXT_NUXT_CONTAINER=front.wuxt
+
+After you created the file, run
+
+    docker-compose down
+    docker-compose up -d
+
+There is even a script that does everything to you :
+
+    npm run env
+
+You will be asked for projectname, front-end-port, back-end-port and dist-port.
+The script creates an `.env` file like the folllowing and stops the old containers:
+
+    WUXT_PORT_FRONTEND=4000
+    WUXT_PORT_BACKEND=4080
+    WUXT_PORT_DIST=9080
+    WUXT_MYSQL_CONTAINER=mysql.projectname
+    WUXT_WP_CONTAINER=wp.projectname
+    WUXT_NUXT_CONTAINER=front.projectname
+
+After running the script start the new containers
+
+    docker-compose up -d
 
 ### Setup **_WordPress_**
 <a name="setup-wp"/>

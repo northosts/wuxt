@@ -10,3 +10,4 @@ wp-content/themes/wuxt/taxonomies/*
 !wp-content/themes/wuxt/taxonomies/index.php
 .DS_Store
 nuxt/dist/*
+.env
