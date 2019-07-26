@@ -20,6 +20,7 @@
         "express": "^4.16.4",
         "fstream": "^1.0.12",
         "lodash": "^4.17.15",
+        "lodash.template": "^4.5.0",
         "nuxt": "2.8.1",
         "nuxt-webfontloader": "^1.1.0",
         "wpapi": "^1.2.1"
