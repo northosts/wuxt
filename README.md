@@ -31,9 +31,9 @@ the most awesome front-end application framework yet.
 
 ## Quick start
 <a name="quick"/>
-
     git clone https://github.com/northosts/wuxt.git
     cd wuxt
+    docker network create nginx.proxy
     docker-compose up -d
 
 - [http://localhost:3080/install.php](http://localhost:3080/install.php) - Install WordPress
