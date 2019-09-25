@@ -26,8 +26,12 @@ services:
           WORDPRESS_DB_PASSWORD: dev
           WUXT_PORT_BACKEND: ${WUXT_PORT_BACKEND:-3080}
           WORDPRESS_CONFIG_EXTRA: |
-            define('WP_SITEURL', 'http://localhost'.(${NGINX_PORT:-80} == 80 ? '' : ${NGINX_PORT:-80} ) );
-            define('WP_HOME', 'http://localhost'.(${NGINX_PORT:-80} == 80 ? '' : ${NGINX_PORT:-80} ) );
+            define('WP_SITEURL', 'http://${HOST:-localhost}'.(${NGINX_PORT:-80} == 80 ? '' : ':${NGINX_PORT:-80}' ) );
+            define('WP_HOME', 'http://${HOST:-localhost}'.(${NGINX_PORT:-80} == 80 ? '' : ':${NGINX_PORT:-80}' ) );
+            if($$_SERVER['SERVER_PORT'] == ${WUXT_PORT_BACKEND:-3080}){
+                header('Location: '.'http://' . $$_SERVER['SERVER_NAME'] . (${NGINX_PORT:-80} == 80 ? '' : ':${NGINX_PORT:-80}' ) . $$_SERVER['REQUEST_URI']);
+                exit;
+            }
         networks:
           - default
 
