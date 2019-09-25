@@ -26,8 +26,8 @@ services:
           WORDPRESS_DB_PASSWORD: dev
           WUXT_PORT_BACKEND: ${WUXT_PORT_BACKEND:-3080}
           WORDPRESS_CONFIG_EXTRA: |
-            define('WP_SITEURL', 'http://localhost:${WUXT_PORT_BACKEND:-3080}' );
-            define('WP_HOME', 'http://localhost:${WUXT_PORT_BACKEND:-3080}' );
+            define('WP_SITEURL', 'http://localhost'.(${NGINX_PORT:-80} == 80 ? '' : ${NGINX_PORT:-80} ) );
+            define('WP_HOME', 'http://localhost'.(${NGINX_PORT:-80} == 80 ? '' : ${NGINX_PORT:-80} ) );
         networks:
           - default
 
@@ -38,12 +38,12 @@ services:
         environment:
             - HOST=0.0.0.0
             - WUXT_WP_CONTAINER=${WUXT_WP_CONTAINER:-wp.wuxt}
-            - WUXT_PORT_BACKEND=${WUXT_PORT_BACKEND:-3080}
+            - WUXT_PORT_BACKEND=${NGINX_PORT:-80}
         ports:
             - '${WUXT_PORT_FRONTEND-3000}:3000'
         volumes:
             - ./nuxt:/var/www/app
-        command: bash -c "yarn install && WUXT_PORT_BACKEND=${WUXT_PORT_BACKEND:-3080} yarn dev"
+        command: bash -c "yarn install && WUXT_PORT_BACKEND=${NGINX_PORT:-80} yarn dev"
         networks:
           - default
 
@@ -51,7 +51,7 @@ services:
         container_name : nginx
         image: nginx:alpine
         ports:
-            - 80:80
+            - ${NGINX_PORT:-80}:80
         restart: always
         volumes:
           - ./nginx/default.conf:/etc/nginx/conf.d/default.conf

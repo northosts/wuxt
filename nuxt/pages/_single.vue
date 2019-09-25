@@ -12,7 +12,7 @@ export default {
     const { route, app, error } = context
 
     try {
-      const single = await app.$wp.slug().name(route.params.single)
+      const single = await app.$wp.slug().name(route.params.single+"/")
       return { single }
     } catch (e) {
       error(e)

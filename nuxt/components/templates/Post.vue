@@ -12,15 +12,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-  created() {
-    this.post.content.rendered = this.post.content.rendered.replace(
-      ':' +
-        (process.env.WUXT_PORT_BACKEND
-          ? process.env.WUXT_PORT_BACKEND
-          : '3080'),
-      ''
-    )
   }
 }
 </script>
