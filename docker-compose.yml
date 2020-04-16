@@ -14,7 +14,7 @@ services:
         container_name: ${WUXT_WP_CONTAINER:-wp.wuxt}
         image: wordpress:5.2.2-php7.2-apache
         volumes:
-          - ./wp-content:/var/www/html/wp-content
+          - ./wp-content:/var/www/html/wp-content:rw,cached
         expose:
           - '${WUXT_PORT_BACKEND:-3080}'
         ports:
