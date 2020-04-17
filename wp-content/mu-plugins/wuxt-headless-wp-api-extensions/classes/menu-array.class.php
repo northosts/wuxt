@@ -17,14 +17,11 @@
 
     		$filter = is_callable($filter) ? $filter : null;
     		if (empty($menuName)) {
-    			throw new Exception('No menu location name provided.');
+    			throw new Exception('No menu name provided.');
     			return;
     		}
-    		$menuLocations = get_nav_menu_locations();
 
-    		if (empty($menuLocations[$menuName])) return;
-
-    		$this->menu = $this->retrieveMenu(wp_get_nav_menu_object($menuLocations[$menuName]), $args, $filter);
+    		$this->menu = $this->retrieveMenu(wp_get_nav_menu_object($menuName), $args, $filter);
     	}
 
 
