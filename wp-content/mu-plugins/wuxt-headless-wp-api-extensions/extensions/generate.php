@@ -11,6 +11,9 @@
         register_rest_route('wuxt', '/v1/generate', array(
             'methods'  => 'GET',
             'callback' => 'wuxt_get_generate_urls'
+            'permission_callback' => function () {
+                return '__return_true';
+            },
         ));
     }
 

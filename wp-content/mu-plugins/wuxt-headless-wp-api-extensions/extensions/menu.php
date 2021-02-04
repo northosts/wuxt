@@ -11,6 +11,9 @@ function wuxt_route_menu()
     register_rest_route('wuxt', '/v1/menu', array(
         'methods' => 'GET',
         'callback' => 'wuxt_get_menu',
+        'permission_callback' => function () {
+            return '__return_true';
+        },
     ));
 }
 

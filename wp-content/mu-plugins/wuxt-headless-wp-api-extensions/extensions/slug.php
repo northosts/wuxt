@@ -10,6 +10,9 @@
         register_rest_route('wuxt', '/v1/slug/(?P<slug>\S+)', array(
             'methods'  => 'GET',
             'callback' => 'wuxt_get_slug'
+            'permission_callback' => function () {
+                return '__return_true';
+            },
         ));
     }
 
