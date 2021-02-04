@@ -10,7 +10,10 @@
     function wuxt_front_page_route() {
         register_rest_route('wuxt', '/v1/front-page', array(
             'methods'  => 'GET',
-            'callback' => 'wuxt_get_front_page'
+            'callback' => 'wuxt_get_front_page',
+            'permission_callback' => function () {
+                return '__return_true';
+            },
         ));
     }
 
