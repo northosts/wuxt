@@ -21,7 +21,7 @@
         "fstream": "^1.0.12",
         "lodash": "^4.17.15",
         "lodash.template": "^4.5.0",
-        "nuxt": "2.9.2",
+        "nuxt": "2.15.7",
         "nuxt-webfontloader": "^1.1.0",
         "wpapi": "^1.2.1"
     },
